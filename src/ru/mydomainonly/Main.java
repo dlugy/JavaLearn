@@ -7,7 +7,7 @@ public class Main {
     public static void main(String[] args) {
         // write your code here
         Scanner in = new Scanner(System.in);
-        System.out.print("Enter value: ");
+        System.out.print("Enter expression to calculate: ");
 
         String inExpression = in.nextLine().replaceAll("\\s+","").toUpperCase();
 
