@@ -30,7 +30,8 @@ public class Main {
             digitalMap = romeDigitsTable.getDigitalHashMap();
         }
         if( digitalMap == null ) throw new IllegalArgumentException("Different number system or wrong arguments");
-        if( digitalMap.get(subStr[0]) > 9 || digitalMap.get(subStr[1]) > 9 ) throw new IllegalArgumentException("Too big digital");
+        if( digitalMap.get(subStr[0]) > 10 || digitalMap.get(subStr[1]) > 10 ||
+                digitalMap.get(subStr[0]) < 1 || digitalMap.get(subStr[1]) < 1) throw new IllegalArgumentException("Too big digital");
 
         int outValue;
         if( inExpression.contains("+") ) {

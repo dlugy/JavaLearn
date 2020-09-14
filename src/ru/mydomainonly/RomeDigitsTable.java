@@ -25,5 +25,6 @@ public class RomeDigitsTable extends DigitsTable {
         DigitalHashMap.put("XVII", 17);
         DigitalHashMap.put("XVIII", 18);
         DigitalHashMap.put("XIX", 19);
+        DigitalHashMap.put("XX", 20);
     }
 }

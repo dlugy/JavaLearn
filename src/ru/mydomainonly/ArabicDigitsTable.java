@@ -25,5 +25,6 @@ public class ArabicDigitsTable extends DigitsTable {
         DigitalHashMap.put("17", 17);
         DigitalHashMap.put("18", 18);
         DigitalHashMap.put("19", 19);
+        DigitalHashMap.put("20", 20);
     }
 }
