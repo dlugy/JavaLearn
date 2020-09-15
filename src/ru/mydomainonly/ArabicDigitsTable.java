@@ -16,15 +16,9 @@ public class ArabicDigitsTable extends DigitsTable {
         DigitalHashMap.put("8", 8);
         DigitalHashMap.put("9", 9);
         DigitalHashMap.put("10", 10);
-        DigitalHashMap.put("11", 11);
-        DigitalHashMap.put("12", 12);
-        DigitalHashMap.put("13", 13);
-        DigitalHashMap.put("14", 14);
-        DigitalHashMap.put("15", 15);
-        DigitalHashMap.put("16", 16);
-        DigitalHashMap.put("17", 17);
-        DigitalHashMap.put("18", 18);
-        DigitalHashMap.put("19", 19);
-        DigitalHashMap.put("20", 20);
+    }
+
+    public String toString(Integer number) {
+        return number.toString();
     }
 }

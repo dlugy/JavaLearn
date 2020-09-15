@@ -8,5 +8,6 @@ public abstract class DigitsTable {
     public Map<String, Integer> getDigitalHashMap() {
         return this.DigitalHashMap;
     }
+    public abstract String toString(Integer value);
 }
 

@@ -22,13 +22,18 @@ public class Main {
         ArabicDigitsTable arabicDigitsTable = new ArabicDigitsTable();
         RomeDigitsTable romeDigitsTable = new RomeDigitsTable();
 
-        Map<String, Integer> digitalMap = null;
+        DigitsTable digitsTable = null;
         if(arabicDigitsTable.getDigitalHashMap().containsKey(subStr[0]) && arabicDigitsTable.getDigitalHashMap().containsKey(subStr[1])) {
-            digitalMap = arabicDigitsTable.getDigitalHashMap();
+            digitsTable = arabicDigitsTable;
         }
         if(romeDigitsTable.getDigitalHashMap().containsKey(subStr[0]) && romeDigitsTable.getDigitalHashMap().containsKey(subStr[1])) {
-            digitalMap = romeDigitsTable.getDigitalHashMap();
+            digitsTable = romeDigitsTable;
         }
+        if( digitsTable == null ) throw new IllegalArgumentException("Different number system or wrong arguments");
+
+        Map<String, Integer> digitalMap = null;
+        digitalMap = digitsTable.getDigitalHashMap();
+
         if( digitalMap == null ) throw new IllegalArgumentException("Different number system or wrong arguments");
         if( digitalMap.get(subStr[0]) > 10 || digitalMap.get(subStr[1]) > 10 ||
                 digitalMap.get(subStr[0]) < 1 || digitalMap.get(subStr[1]) < 1) throw new IllegalArgumentException("Too big digital");
@@ -45,17 +50,10 @@ public class Main {
             outValue = digitalMap.get(subStr[0]) / digitalMap.get(subStr[1]);
         } else throw new IllegalArgumentException("Invalid input line");
 
-        Integer finalOutValue = outValue;
-        Optional<String> result = digitalMap.entrySet()
-                .stream()
-                .filter(entry -> Objects.equals(entry.getValue(), finalOutValue))
-                .map(Map.Entry::getKey)
-                .findFirst();
-
-        if(result.isPresent() ) {
-            System.out.printf("Вычисленное значение: %s\n", result.get());
+        if( outValue >= 0 ) {
+            System.out.printf("Вычисленное значение: %s\n", digitsTable.toString(outValue));
         } else {
-            throw new IllegalArgumentException("В таблице соответствий чисел и изображений не найден результат вычисления");
+            System.out.printf("Вычисленное значение: -%s\n", digitsTable.toString(-outValue));
         }
     }
 }
