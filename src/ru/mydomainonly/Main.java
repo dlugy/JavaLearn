@@ -16,27 +16,28 @@ public class Main {
 
         // Validate input arguments
         if( subStr.length != 2 ) throw new IllegalArgumentException("Invalid input line");
+        // Не более 1 оператора
         if( inExpression.length()+1 != inExpression.replaceAll("[+\\-*/]","12").length() ) throw new IllegalArgumentException("Invalid input line");
         if( subStr[0].length() < 1 ) throw new IllegalArgumentException("Invalid input line");
 
         ArabicDigitsTable arabicDigitsTable = new ArabicDigitsTable();
         RomeDigitsTable romeDigitsTable = new RomeDigitsTable();
 
+        // Get number system for calculate
         DigitsTable digitsTable = null;
-        if(arabicDigitsTable.getDigitalHashMap().containsKey(subStr[0]) && arabicDigitsTable.getDigitalHashMap().containsKey(subStr[1])) {
-            digitsTable = arabicDigitsTable;
-        }
-        if(romeDigitsTable.getDigitalHashMap().containsKey(subStr[0]) && romeDigitsTable.getDigitalHashMap().containsKey(subStr[1])) {
+        if(ProperNumberSystem(romeDigitsTable,subStr[0],subStr[1])) {
             digitsTable = romeDigitsTable;
+        }
+        if(ProperNumberSystem(arabicDigitsTable,subStr[0],subStr[1])) {
+            digitsTable = arabicDigitsTable;
         }
         if( digitsTable == null ) throw new IllegalArgumentException("Different number system or wrong arguments");
 
-        Map<String, Integer> digitalMap = null;
+        Map<String, Integer> digitalMap;
         digitalMap = digitsTable.getDigitalHashMap();
 
-        if( digitalMap == null ) throw new IllegalArgumentException("Different number system or wrong arguments");
         if( digitalMap.get(subStr[0]) > 10 || digitalMap.get(subStr[1]) > 10 ||
-                digitalMap.get(subStr[0]) < 1 || digitalMap.get(subStr[1]) < 1) throw new IllegalArgumentException("Too big digital");
+                digitalMap.get(subStr[0]) < 1 || digitalMap.get(subStr[1]) < 1) throw new IllegalArgumentException("Numbers must be between 1 and 10");
 
         int outValue;
         if( inExpression.contains("+") ) {
@@ -55,5 +56,10 @@ public class Main {
         } else {
             System.out.printf("Вычисленное значение: -%s\n", digitsTable.toString(-outValue));
         }
+    }
+
+    public static boolean ProperNumberSystem(DigitsTable digitsTable, String firstNumber, String secondNumber) {
+        return digitsTable.getDigitalHashMap().containsKey(firstNumber) &&
+                digitsTable.getDigitalHashMap().containsKey(secondNumber);
     }
 }

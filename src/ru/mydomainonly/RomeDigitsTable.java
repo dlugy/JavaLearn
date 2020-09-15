@@ -45,9 +45,10 @@ public class RomeDigitsTable extends DigitsTable {
     }
 
     public String toString(Integer number) {
-        if ((number <= 0) || (number > 4000)) {
+        if ((number < 0) || (number > 4000)) {
             throw new IllegalArgumentException(number + " is not in range (0,4000]");
         }
+        if( number == 0 ) return "0";
 
         List<RomanNumeral> romanNumerals = RomanNumeral.getReverseSortedValues();
 
